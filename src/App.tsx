@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Add from "./components/Add";
+import TodoList from "./components/TodoList";
+import Task from "./components/Task";
+
+export type Todo = {
+  task: string;
+  completed: boolean;
+};
 
 function App() {
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    const savedTodos: string | null = localStorage.getItem("todos");
+    if (!savedTodos) return [] as Todo[];
+    return JSON.parse(savedTodos);
+  });
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Add todos={todos} setTodos={setTodos}></Add>
+      <TodoList>
+        {todos.map((todo, i) => (
+          <Task key={i} todo={todo} />
+        ))}
+      </TodoList>
     </div>
   );
 }
