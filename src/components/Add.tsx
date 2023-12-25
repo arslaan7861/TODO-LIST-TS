@@ -12,18 +12,27 @@ function Add({ setTodos, todos }: props) {
   const addTask: AddTask = (e) => {
     e.preventDefault();
     if (!task) return;
-    setTodos([...todos, { task, completed: false }]);
+    setTodos([...todos, { task, completed: false, id: Date.now() }]);
     setTask("");
   };
 
   return (
-    <form onSubmit={addTask}>
+    <form
+      onSubmit={addTask}
+      className="w-full shadow-lg rounded-md overflow-hidden relative h-10"
+    >
       <input
         type="text"
         value={task}
         onChange={(e) => setTask(e.target.value)}
+        className=" h-full w-full rounded-md"
       />
-      <button type="submit">add todo</button>
+      <button
+        type="submit"
+        className="absolute top-0 right-0 h-full text-xs sm:text-sm font-bold p-2 text-white uppercase bg-cyan-400"
+      >
+        add task
+      </button>
     </form>
   );
 }
