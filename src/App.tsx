@@ -35,8 +35,8 @@ function App() {
 
   return (
     <div className="h-screen gap-5 w-screen font-mono bg-cyan-100 flex flex-col items-center p-5">
-      <Add todos={todos} setTodos={setTodos}></Add>
       <h3 className="text-3xl text-center uppercase font-extrabold">tasks</h3>
+      <Add todos={todos} setTodos={setTodos}></Add>
       <TodoList>
         {todos.map((todo, index) => (
           <Task

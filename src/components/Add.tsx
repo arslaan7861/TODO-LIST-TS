@@ -19,17 +19,17 @@ function Add({ setTodos, todos }: props) {
   return (
     <form
       onSubmit={addTask}
-      className="w-full shadow-lg rounded-md overflow-hidden relative h-10"
+      className="w-full shadow-lg rounded-md overflow-hidden flex  h-10"
     >
       <input
         type="text"
         value={task}
         onChange={(e) => setTask(e.target.value)}
-        className=" h-full w-full rounded-md"
+        className=" h-full w-full px-2 flex-grow rounded-md"
       />
       <button
         type="submit"
-        className="absolute top-0 right-0 h-full text-xs sm:text-sm font-bold p-2 text-white uppercase bg-cyan-400"
+        className=" h-full text-xs sm:text-sm flex-shrink-0 font-bold p-2 text-white uppercase bg-cyan-400"
       >
         add task
       </button>
